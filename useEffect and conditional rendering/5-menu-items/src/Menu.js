@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import Categories from "./Categories";
 import data from "./data";
 
+const allCategories = ["all", ...new Set(data.map((item) => item.category))];
+console.log(`allCategories: ${allCategories}`);
 const Menu = () => {
-  const [category, setCategory] = useState("all");
   const [items, setItems] = useState(data);
-  //   const [isBreakfast, setIsBreakfast] = useState(false);
-  //   const [isLunch, setIsLunch] = useState(false);
-  //   const [isShakes, setIsShakes] = useState(false);
+  const [categories, setCategories] = useState(allCategories);
   const filterItems = (category) => {
     if (category === "all") {
       setItems(data);
@@ -24,10 +23,18 @@ const Menu = () => {
           <div className="underline"></div>
         </div>
         <div className="btn-container">
-          <button className="filter-btn" onClick={() => filterItems("all")}>
-            all
-          </button>
-          <button
+          {categories.map((category, index) => {
+            return (
+              <button
+                key={index}
+                className="filter-btn"
+                onClick={() => filterItems(category)}
+              >
+                {category}
+              </button>
+            );
+          })}
+          {/* <button
             className="filter-btn"
             onClick={() => filterItems("breakfast")}
           >
@@ -38,7 +45,7 @@ const Menu = () => {
           </button>
           <button className="filter-btn" onClick={() => filterItems("shakes")}>
             shakes
-          </button>
+          </button> */}
         </div>
         <Categories items={items}></Categories>
       </section>
