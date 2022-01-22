@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Menu from "./Menu";
-import Categories from "./Categories";
-import items from "./data";
 
 function App() {
-  return <h2>menu project setup</h2>;
+  return (
+    <main>
+      <Menu></Menu>
+    </main>
+  );
 }
 
 export default App;
